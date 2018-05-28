@@ -1,0 +1,78 @@
+<head>
+<style>
+[id='toggle-heart'] {
+  position: absolute;
+  left: -100vw;
+}
+[for='toggle-heart'] {
+  color: #aab8c2;
+}
+
+[id='toggle-heart']:checked + label {
+  color: #e2264d;
+}
+[for='toggle-heart'] {
+  font-size: 2em;
+  cursor: pointer;
+}
+
+body {
+  display: flex;
+  justify-content: center; /* horizontal alignment */
+  margin: 0;
+  height: 100vh; /* the viewport height */
+}
+
+/* vertical alignment, needs the height of 
+   the body to be equal to that of the 
+   viewport if we want it in the middle */
+[for='toggle-heart'] { 
+  align-self: center; 
+}
+@keyframes heart { 0%, 17.5% { font-size: 0; } }
+
+[id='toggle-heart']:checked + label {
+  will-change: font-size;
+  animation: heart 1s cubic-bezier(.17, .89, .32, 1.49);
+}
+[for='toggle-heart'] {
+  position: relative;
+
+  &:before, &:after {
+    position: absolute;
+    z-index: -1;
+    top: 50%; left: 50%;
+    border-radius: 50%;
+    content: '';
+  }
+}
+[for='toggle-heart']:before {
+  box-sizing: border-box;
+  border: solid $bubble-r #e2264d;
+  transform: scale(0);
+}
+
+@keyframes bubble {
+  15% {
+    border-color: #cc8ef5;
+    border-width: $bubble-r;
+    transform: scale(1);
+  }
+  30%, 100% {
+    border-color: #cc8ef5;
+    border-width: 0;
+    transform: scale(1);
+  }
+}
+</style>
+
+</head>
+
+
+<Body>
+
+<input id="toggle-heart" type="checkbox" />
+
+<label for="toggle-heart">  ❤</label>
+
+</body>
